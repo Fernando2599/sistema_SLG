@@ -93,7 +93,8 @@ FontAwesomeAsset::register($this);
             'options' =>['class' =>'dropdown'],
             'template'=>'<a href="{url}" class="href_class">{label}</a>',
             'items' =>[ ['label' => 'Sede', 'url' => ['/sede']],
-                        ['label' => 'Dictamen', 'url' => ['/dictamen']]
+                        ['label' => 'Dictamen', 'url' => ['/dictamen']],
+                        ['label' => 'Validacion', 'url' => ['/validacion']],
 
                     ],
             ]; 

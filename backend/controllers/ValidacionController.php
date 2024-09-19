@@ -2,16 +2,16 @@
 
 namespace backend\controllers;
 
-use backend\models\Dictamen;
-use backend\models\search\DictamenSearch;
+use backend\models\Validacion;
+use backend\models\search\ValidacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DictamenController implements the CRUD actions for Dictamen model.
+ * ValidacionController implements the CRUD actions for Validacion model.
  */
-class DictamenController extends Controller
+class ValidacionController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class DictamenController extends Controller
     }
 
     /**
-     * Lists all Dictamen models.
+     * Lists all Validacion models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new DictamenSearch();
+        $searchModel = new ValidacionSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class DictamenController extends Controller
     }
 
     /**
-     * Displays a single Dictamen model.
+     * Displays a single Validacion model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,13 +61,13 @@ class DictamenController extends Controller
     }
 
     /**
-     * Creates a new Dictamen model.
+     * Creates a new Validacion model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Dictamen();
+        $model = new Validacion();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -83,7 +83,7 @@ class DictamenController extends Controller
     }
 
     /**
-     * Updates an existing Dictamen model.
+     * Updates an existing Validacion model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -93,15 +93,8 @@ class DictamenController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                // Evita que se sobrescriba 'created_at'
-                unset($model->created_at);
-    
-                if ($model->save()) {
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }
-            }
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -110,7 +103,7 @@ class DictamenController extends Controller
     }
 
     /**
-     * Deletes an existing Dictamen model.
+     * Deletes an existing Validacion model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -124,15 +117,15 @@ class DictamenController extends Controller
     }
 
     /**
-     * Finds the Dictamen model based on its primary key value.
+     * Finds the Validacion model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Dictamen the loaded model
+     * @return Validacion the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Dictamen::findOne(['id' => $id])) !== null) {
+        if (($model = Validacion::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

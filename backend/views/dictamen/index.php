@@ -12,6 +12,10 @@ use yii\grid\GridView;
 
 $this->title = 'Dictamens';
 $this->params['breadcrumbs'][] = $this->title;
+
+// Registrar el archivo CSS
+$this->registerCssFile("@web/css/validacion.css");
+
 ?>
 <div class="dictamen-index">
 
@@ -30,10 +34,34 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'sede_id',
-            'rfc',
+            'created_at',
             'razon_social',
             'nombre_comercial',
+            'rfc',
+            'folio',
+            [
+                'attribute' => 'validez_id',
+                'format' => 'raw',  // Esto permite usar HTML
+                'value' => function ($model) {
+                    $estado = $model->estado->estado ?? 'Desconocido';  // Aquí obtienes el estado por nombre
+                    $class = '';  // Inicializamos la clase CSS
+    
+                    // Aplicamos la clase CSS según el estado
+                    if ($estado === 'Validado') {
+                        $class = 'validado';
+                    } elseif ($estado === 'No validado') {
+                        $class = 'no-validado';
+                    } elseif ($estado === 'Pendiente') {
+                        $class = 'pendiente';
+                    }
+    
+                    // Retorna el estado con la clase aplicada
+                    return Html::tag('span', $estado, ['class' => $class]);
+                },
+                'label' => 'Estado',  // Cambia el título de la columna si es necesario
+            ],
+
+            //'sede_id',
             //'giro_comercial',
             //'representante_legal',
             //'direccion',
@@ -41,6 +69,9 @@ $this->params['breadcrumbs'][] = $this->title;
             //'updated_at',
             //'created_by',
             //'updated_by',
+            //'folio',
+            //'validez_id',
+            
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Dictamen $model, $key, $index, $column) {

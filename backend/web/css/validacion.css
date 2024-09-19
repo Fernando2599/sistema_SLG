@@ -1,0 +1,29 @@
+/* Estilo para celdas validadas */
+.validado {
+    background-color: #4CAF50;  /* Fondo verde */
+    color: white;
+    padding: 5px;
+    text-align: center;
+    border-radius: 12px;  /* Bordes redondeados */
+    font-weight: bold;
+}
+
+/* Estilo para celdas no validadas */
+.no-validado {
+    background-color: #f44336;  /* Fondo rojo */
+    color: white;
+    padding: 5px;
+    text-align: center;
+    border-radius: 12px;  /* Bordes redondeados */
+    font-weight: bold;
+}
+
+/* Estilo para celdas pendeintes */
+.pendiente {
+    background-color: #ffae00;  /* Fondo rojo */
+    color: white;
+    padding: 5px;
+    text-align: center;
+    border-radius: 12px;  /* Bordes redondeados */
+    font-weight: bold;
+}

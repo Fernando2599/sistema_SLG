@@ -22,6 +22,8 @@ use yii\db\ActiveRecord;
  * @property string $updated_at
  * @property int $created_by
  * @property int $updated_by
+ * @property string $folio
+ * @property int $validez_id
  */
 class Dictamen extends \yii\db\ActiveRecord
 {
@@ -39,10 +41,10 @@ class Dictamen extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sede_id', 'rfc', 'razon_social', 'nombre_comercial', 'giro_comercial', 'representante_legal', 'direccion'], 'required'],
-            [['sede_id', 'created_by', 'updated_by'], 'integer'],
+            [['sede_id', 'rfc', 'razon_social', 'nombre_comercial', 'giro_comercial', 'representante_legal', 'direccion', 'folio', 'validez_id'], 'required'],
+            [['sede_id', 'created_by', 'updated_by', 'validez_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['rfc'], 'string', 'max' => 20],
+            [['rfc', 'folio'], 'string', 'max' => 20],
             [['razon_social', 'nombre_comercial', 'giro_comercial', 'representante_legal', 'direccion'], 'string', 'max' => 255],
         ];
     }
@@ -68,7 +70,7 @@ class Dictamen extends \yii\db\ActiveRecord
             ],
         ];
     }
-
+    
 
 
 
@@ -91,6 +93,24 @@ class Dictamen extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
+            'folio' => 'Folio',
+            'validez_id' => 'Validez ID',
         ];
     }
+
+    public function getEstado()
+    {
+        return $this->hasOne(Validacion::class, ['id' => 'validez_id']);
+    }
+
+    /**
+     * Método para obtener el nombre del estado
+     */
+    public function getEstadoNombre()
+    {
+        return $this->estado ? $this->estado->estado : 'Desconocido'; // Asegúrate de que 'estado' es el nombre de la columna en 'validacion'
+    }
+    
 }
+
+

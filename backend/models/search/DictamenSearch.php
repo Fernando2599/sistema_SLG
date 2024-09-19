@@ -17,8 +17,8 @@ class DictamenSearch extends Dictamen
     public function rules()
     {
         return [
-            [['id', 'sede_id', 'created_by', 'updated_by'], 'integer'],
-            [['rfc', 'razon_social', 'nombre_comercial', 'giro_comercial', 'representante_legal', 'direccion', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'sede_id', 'created_by', 'updated_by', 'validez_id'], 'integer'],
+            [['rfc', 'razon_social', 'nombre_comercial', 'giro_comercial', 'representante_legal', 'direccion', 'created_at', 'updated_at', 'folio'], 'safe'],
         ];
     }
 
@@ -64,6 +64,7 @@ class DictamenSearch extends Dictamen
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
+            'validez_id' => $this->validez_id,
         ]);
 
         $query->andFilterWhere(['like', 'rfc', $this->rfc])
@@ -71,7 +72,8 @@ class DictamenSearch extends Dictamen
             ->andFilterWhere(['like', 'nombre_comercial', $this->nombre_comercial])
             ->andFilterWhere(['like', 'giro_comercial', $this->giro_comercial])
             ->andFilterWhere(['like', 'representante_legal', $this->representante_legal])
-            ->andFilterWhere(['like', 'direccion', $this->direccion]);
+            ->andFilterWhere(['like', 'direccion', $this->direccion])
+            ->andFilterWhere(['like', 'folio', $this->folio]);
 
         return $dataProvider;
     }

@@ -32,10 +32,17 @@ use yii\widgets\ActiveForm;
     <!-- Remueve o comenta los siguientes campos -->
     <!--
     <?= $form->field($model, 'created_at')->textInput() ?>
+
     <?= $form->field($model, 'updated_at')->textInput() ?>
+
     <?= $form->field($model, 'created_by')->textInput() ?>
+
     <?= $form->field($model, 'updated_by')->textInput() ?>
     -->
+
+    <?= $form->field($model, 'folio')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'validez_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
