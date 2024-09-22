@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-use common\models\PermisosHelpers;
+use common\models\PermisosHelpers; //importar o incluir la clase PermisosHelpers que está ubicada en la ruta common/models. 
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -21,7 +21,8 @@ class UserController extends Controller
     public function behaviors()
     {
         return array_merge(
-            parent::behaviors(),
+
+            parent::behaviors(), //comportamiento de la pagina para poder cargar las acciones.
             [
                 'access' => [
                     'class' => \yii\filters\AccessControl::className(),

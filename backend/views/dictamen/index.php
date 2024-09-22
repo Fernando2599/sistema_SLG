@@ -74,6 +74,16 @@ $this->registerCssFile("@web/css/validacion.css");
             
             [
                 'class' => ActionColumn::className(),
+                'template' => '{view} {update} {delete} {pdf_btn}', // Agrega tu nuevo botón aquí
+                'buttons' => [
+                    'pdf_btn' => function ($url, $model, $key) {
+                        return Html::a('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>', ['mi-pdf', 'id' => $model->id], [
+                            'title' => 'Generar Dictamen', //Titulo del cursor
+                            'data-pjax' => '0',
+                            'class' => 'btn btn-primary'
+                        ]);
+                    },
+                ],
                 'urlCreator' => function ($action, Dictamen $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }

@@ -4,6 +4,10 @@ namespace backend\models;
 
 use Yii;
 
+//Librerias colocadas por mi
+use yii\behaviors\BlameableBehavior;
+
+
 /**
  * This is the model class for table "sede".
  *
@@ -46,6 +50,19 @@ class Sede extends \yii\db\ActiveRecord
             'direccion' => 'Direccion',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
+        ];
+    }
+
+
+    /*------------------------------------------------------------------------------------- */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
         ];
     }
 }

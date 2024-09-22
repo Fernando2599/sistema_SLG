@@ -7,6 +7,8 @@ use backend\models\search\SedeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\PermisosHelpers; //agregar esta linea siempre y cuando se use el comportamiento(behaviors) de la pagina.
+
 
 /**
  * SedeController implements the CRUD actions for Sede model.
@@ -21,6 +23,33 @@ class SedeController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => \yii\filters\AccessControl::className(),
+                    'only' => ['index', 'view','create', 'update', 'delete'], //Solo cuando este iniciado sesion solo esta parte se puede hacer
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'create', 'view',],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                             return PermisosHelpers::requerirMinimoRol('Admin') 
+                             && PermisosHelpers::requerirEstado('Activo');
+                            }
+                        ],
+                         [
+                            'actions' => [ 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                             return PermisosHelpers::requerirMinimoRol('SuperUsuario') 
+                             && PermisosHelpers::requerirEstado('Activo');
+                            }
+                        ],
+                             
+                    ],
+                         
+                ],
+
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

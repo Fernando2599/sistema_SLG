@@ -131,7 +131,7 @@ FontAwesomeAsset::register($this);
             'items' => $menuItems,
     ]); 
     
-    if (Yii::$app->user->isGuest) {
+    if (Yii::$app->user->isGuest) { //Si no has iniciado sesion solo te muestra esto.
 
         $menuItems[] = ['label' => 'Login', 'url' => ['site/login']];
     }else{
@@ -168,7 +168,7 @@ FontAwesomeAsset::register($this);
         <p class="float-start">&copy;
                                       <!-- <?= Html::encode('Sistema XXX') ?> -->
                                       <?= date('Y')?>
-                                      <spam></spam>Dr. Rusell Renan Iuit Manzanero
+                                      <spam></spam>I.S.C Eduardo Alexander Estrella Escobedo
         </p>
         <!-- <p class="float-end"><?= Yii::powered() ?></p> -->
     </div>

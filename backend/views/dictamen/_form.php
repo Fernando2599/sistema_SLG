@@ -12,7 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'sede_id')->textInput() ?>
+    <!--<?= $form->field($model, 'sede_id')->textInput() ?> -->
+    <?= $form->field($model, 'sede_id')->dropDownList($model->getSedesList(), ['prompt'=>'Selecciona una sede...']) ?>
 
     <?= $form->field($model, 'rfc')->textInput(['maxlength' => true]) ?>
 

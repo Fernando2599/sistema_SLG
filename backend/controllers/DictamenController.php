@@ -7,6 +7,7 @@ use backend\models\search\DictamenSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\PermisosHelpers; //agregar esta linea siempre y cuando se use el comportamiento(behaviors) de la pagina.
 
 /**
  * DictamenController implements the CRUD actions for Dictamen model.
@@ -21,6 +22,33 @@ class DictamenController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => \yii\filters\AccessControl::className(),
+                    'only' => ['index', 'view','create', 'update', 'delete'], //Solo cuando este iniciado sesion solo esta parte se puede hacer
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'create', 'view',],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                             return PermisosHelpers::requerirMinimoRol('Admin') 
+                             && PermisosHelpers::requerirEstado('Activo');
+                            }
+                        ],
+                         [
+                            'actions' => [ 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                             return PermisosHelpers::requerirMinimoRol('SuperUsuario') 
+                             && PermisosHelpers::requerirEstado('Activo');
+                            }
+                        ],
+                             
+                    ],
+                         
+                ],
+
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -68,6 +96,9 @@ class DictamenController extends Controller
     public function actionCreate()
     {
         $model = new Dictamen();
+
+        // Generar el folio automáticamente antes de mostrar el formulario
+        $model->folio = $this->generateFolio();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -137,5 +168,26 @@ class DictamenController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Genera el folio en el formato "1db1b807d7-XXX"
+     */
+    protected function generateFolio()
+    {
+        // La parte constante del folio
+        $prefix = '1db1b807d7';
+
+        // Obtener el último folio generado
+        $lastFolio = Dictamen::find()->orderBy(['id' => SORT_DESC])->one();
+
+        // Extraer el número del folio (últimos tres caracteres después del guion)
+        $lastNumber = $lastFolio ? (int)substr($lastFolio->folio, -3) : 0;
+
+        // Incrementar el número en uno y formatearlo a 3 dígitos
+        $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+
+        // Retornar el nuevo folio completo
+        return $prefix . '-' . $newNumber;
     }
 }

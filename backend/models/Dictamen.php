@@ -6,6 +6,8 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
+
 
 /**
  * This is the model class for table "dictamen".
@@ -98,6 +100,7 @@ class Dictamen extends \yii\db\ActiveRecord
         ];
     }
 
+    /**---------------------------------------------------------------------------------------------------------------------------------------------- */
     public function getEstado()
     {
         return $this->hasOne(Validacion::class, ['id' => 'validez_id']);
@@ -109,6 +112,13 @@ class Dictamen extends \yii\db\ActiveRecord
     public function getEstadoNombre()
     {
         return $this->estado ? $this->estado->estado : 'Desconocido'; // Asegúrate de que 'estado' es el nombre de la columna en 'validacion'
+    }
+
+    public function getSedesList()
+    {
+        $sedes = Sede::find()->all();
+        $sedesList = ArrayHelper::map($sedes, 'id', 'nombre'); // Utiliza 'nombre' como descripción
+        return $sedesList;
     }
     
 }
