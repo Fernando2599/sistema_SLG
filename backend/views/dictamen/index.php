@@ -77,10 +77,10 @@ $this->registerCssFile("@web/css/validacion.css");
                 'template' => '{view} {update} {delete} {pdf_btn}', // Agrega tu nuevo botón aquí
                 'buttons' => [
                     'pdf_btn' => function ($url, $model, $key) {
-                        return Html::a('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>', ['mi-pdf', 'id' => $model->id], [
+                        return Html::a('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>', ['pdfcontroller/pdf/generate-pdf', 'id' => $model->id], [
                             'title' => 'Generar Dictamen', //Titulo del cursor
                             'data-pjax' => '0',
-                            'class' => 'btn btn-primary'
+                            'class' => 'btn btn-danger' // Cambiado a rojo
                         ]);
                     },
                 ],
