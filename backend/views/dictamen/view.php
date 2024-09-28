@@ -15,22 +15,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    <!-- Condición para mostrar los botones de editar/eliminar solo a SuperUsuario -->
+    <?php if (Yii::$app->user->identity->rol_id == 7): ?>
+        <p>
+            <?= Html::a('Editar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Eliminar', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => '¿Estás seguro que deseas eliminar este ítem?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
+    <?php endif; ?>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            'sede_id',
+            [
+                'attribute' => 'sede_id',
+                'label' => 'Sede:',
+                'value' => function ($model) {
+                    return $model->sede ? $model->sede->nombre : 'Desconocido'; // Asume que 'nombre' es la columna que tiene el nombre de la sede
+                },
+            ],
             'rfc',
             'razon_social',
             'nombre_comercial',
@@ -39,12 +48,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'direccion',
             'created_at',
             'updated_at',
-            'created_by',
-            'updated_by',
+            [
+                'attribute' => 'created_by',
+                'label' => 'Creado por:',
+                'value' => function ($model) {
+                    return $model->createdBy ? $model->createdBy->username : 'Desconocido'; // Asume que 'username' es el nombre del usuario
+                },
+            ],
+            [
+                'attribute' => 'updated_by',
+                'label' => 'Actualizado por:',
+                'value' => function ($model) {
+                    return $model->updatedBy ? $model->updatedBy->username : 'Desconocido';
+                },
+            ],
             'folio',
             [
                 'attribute' => 'validez_id',
-                'label' => 'Estado de Validez',
+                'label' => 'Estado de Validez:',
                 'value' => function ($model) {
                     return $model->getEstadoNombre(); // Asegúrate de que se llame al método aquí
                 },

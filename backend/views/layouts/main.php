@@ -89,7 +89,7 @@ FontAwesomeAsset::register($this);
                         ['label' => 'Estados Usuarios', 'url' => ['/estado']],                                               
                     ],
             ];
-            $menuItems[] = ['label' => 'Sistema', 'url' => ['/site/index'],
+            $menuItems[] = ['label' => 'Dictamenes', 'url' => ['/site/index'],
             'options' =>['class' =>'dropdown'],
             'template'=>'<a href="{url}" class="href_class">{label}</a>',
             'items' =>[ ['label' => 'Sede', 'url' => ['/sede']],

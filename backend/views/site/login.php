@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <p>Please fill out the following fields to login:</p> -->
     <div class="row">      
       <div class="col-md-4 offset-md-4" >                                             <!--#f2f2f2  #33d6ff -->
-        <div class="account-wall" align=center style="Background-color:#33d6ff;
+        <div class="account-wall" align=center style="Background-color:#f2f2f2;
                                                           border:1px solid #00a3cc;
                                                           border-radius:40px;
                                                           padding:15px;

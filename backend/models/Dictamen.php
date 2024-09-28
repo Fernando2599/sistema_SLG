@@ -7,6 +7,8 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use common\models\User;
+
 
 
 /**
@@ -83,19 +85,20 @@ class Dictamen extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            //Nombres de la vista del formulario
             'id' => 'ID',
-            'sede_id' => 'Sede ID',
-            'rfc' => 'Rfc',
-            'razon_social' => 'Razon Social',
-            'nombre_comercial' => 'Nombre Comercial',
-            'giro_comercial' => 'Giro Comercial',
-            'representante_legal' => 'Representante Legal',
-            'direccion' => 'Direccion',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'created_by' => 'Created By',
-            'updated_by' => 'Updated By',
-            'folio' => 'Folio',
+            'sede_id' => 'Sede:',
+            'rfc' => 'Rfc:',
+            'razon_social' => 'Razon Social:',
+            'nombre_comercial' => 'Nombre Comercial:',
+            'giro_comercial' => 'Giro Comercial:',
+            'representante_legal' => 'Representante Legal:',
+            'direccion' => 'Dirección:',
+            'created_at' => 'Fecha de creación:',
+            'updated_at' => 'Fecha de Actualización:',
+            'created_by' => 'Creado por:',
+            'updated_by' => 'Actualizado por:',
+            'folio' => 'Folio:',
             'validez_id' => 'Validez ID',
         ];
     }
@@ -121,6 +124,22 @@ class Dictamen extends \yii\db\ActiveRecord
         return $sedesList;
     }
     
+    public function getSede()
+    {
+        return $this->hasOne(Sede::class, ['id' => 'sede_id']);
+    }
+
+        public function getCreatedBy()
+    {
+        return $this->hasOne(User::class, ['id' => 'created_by']);
+    }
+
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::class, ['id' => 'updated_by']);
+    }
+
+
 }
 
 

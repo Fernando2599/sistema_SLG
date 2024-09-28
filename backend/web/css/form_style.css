@@ -1,0 +1,22 @@
+.dictamen-form {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.dictamen-form .form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.dictamen-form .guardar-btn,
+.dictamen-form .cancelar-btn {
+    transition: transform 0.3s ease; /* Suaviza el efecto */
+}
+
+.guardar-btn:hover,
+.cancelar-btn:hover {
+    transform: scale(1.02); /* Aumenta el tamaño al 105% */
+}

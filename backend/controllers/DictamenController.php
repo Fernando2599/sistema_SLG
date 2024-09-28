@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use Yii; // Asegúrate de que esta línea esté presente
 use backend\models\Dictamen;
 use backend\models\search\DictamenSearch;
 use yii\web\Controller;
@@ -35,7 +36,7 @@ class DictamenController extends Controller
                              && PermisosHelpers::requerirEstado('Activo');
                             }
                         ],
-                         [
+                        [
                             'actions' => [ 'update', 'delete'],
                             'allow' => true,
                             'roles' => ['@'],
@@ -44,6 +45,17 @@ class DictamenController extends Controller
                              && PermisosHelpers::requerirEstado('Activo');
                             }
                         ],
+
+                        [
+                            'actions' => ['validate'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                                return PermisosHelpers::requerirMinimoRol('SuperUsuario') 
+                                && PermisosHelpers::requerirEstado('Activo');
+                            }
+                        ],
+                        
                              
                     ],
                          
@@ -67,13 +79,25 @@ class DictamenController extends Controller
     public function actionIndex()
     {
         $searchModel = new DictamenSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
+    
+        // Verifica el rol del usuario
+        $rol_id = Yii::$app->user->identity->rol_id;
+    
+        // Si el rol es SuperUsuario (ID 7), mostrar todos los dictámenes
+        if ($rol_id == 7) {
+            $dataProvider = $searchModel->search($this->request->queryParams);
+        } else {
+            // Si el usuario no es SuperUsuario, mostrar solo los dictámenes creados por él
+            $dataProvider = $searchModel->search($this->request->queryParams);
+            $dataProvider->query->andWhere(['created_by' => Yii::$app->user->id]); // Filtra por el usuario actual
+        }
+    
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+    
 
     /**
      * Displays a single Dictamen model.
@@ -99,6 +123,9 @@ class DictamenController extends Controller
 
         // Generar el folio automáticamente antes de mostrar el formulario
         $model->folio = $this->generateFolio();
+
+         // Asignar el estado "pendiente" por defecto
+        $model->validez_id = 3;  // Cambia '3' al ID correspondiente para "pendiente"
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -190,4 +217,28 @@ class DictamenController extends Controller
         // Retornar el nuevo folio completo
         return $prefix . '-' . $newNumber;
     }
+
+    /**
+     * Validates an existing Dictamen model.
+     * If validation is successful, the browser will be redirected to the 'index' page.
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionValidate($id)
+    {
+        $model = $this->findModel($id);
+
+        // Cambiar el estado a "Validado"
+        $model->validez_id = 1; // Cambia '1' al ID correspondiente para "Validado"
+
+        if ($model->save()) {
+            Yii::$app->session->setFlash('success', 'El dictamen ha sido validado exitosamente.');
+            return $this->redirect(['index']);
+        }
+
+        Yii::$app->session->setFlash('error', 'Error al validar el dictamen.');
+        return $this->redirect(['index']);
+    }
+
 }
