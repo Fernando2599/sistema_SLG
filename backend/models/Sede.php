@@ -16,6 +16,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $direccion
  * @property int|null $created_by
  * @property int|null $updated_by
+ * @property string $numero_registro
  */
 class Sede extends \yii\db\ActiveRecord
 {
@@ -33,9 +34,10 @@ class Sede extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'direccion'], 'required'],
+            [['nombre', 'direccion', 'numero_registro'], 'required'],
             [['created_by', 'updated_by'], 'integer'],
             [['nombre', 'direccion'], 'string', 'max' => 255],
+            [['numero_registro'], 'string', 'max' => 50],
         ];
     }
 
@@ -50,10 +52,11 @@ class Sede extends \yii\db\ActiveRecord
             'direccion' => 'Direccion',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
+            'numero_registro' => 'Numero Registro',
         ];
     }
 
-
+    
     /*------------------------------------------------------------------------------------- */
     public function behaviors()
     {

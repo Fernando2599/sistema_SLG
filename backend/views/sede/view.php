@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'direccion',
             'created_by',
             'updated_by',
+            'numero_registro',
         ],
     ]) ?>
 

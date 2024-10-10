@@ -18,7 +18,7 @@ class SedeSearch extends Sede
     {
         return [
             [['id', 'created_by', 'updated_by'], 'integer'],
-            [['nombre', 'direccion'], 'safe'],
+            [['nombre', 'direccion', 'numero_registro'], 'safe'],
         ];
     }
 
@@ -64,7 +64,8 @@ class SedeSearch extends Sede
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'direccion', $this->direccion]);
+            ->andFilterWhere(['like', 'direccion', $this->direccion])
+            ->andFilterWhere(['like', 'numero_registro', $this->numero_registro]);
 
         return $dataProvider;
     }

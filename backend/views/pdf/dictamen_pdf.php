@@ -2,18 +2,21 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+// Suponiendo que tienes el dictamen cargado y contiene la relación con sede
+$numeroRegistro = $dictamen->sede ? $dictamen->sede->numero_registro : 'N/A'; // Manejar el caso en que no haya sede
 ?>
+
 
 <!-- Portada del pdf -->
 <div class="portada">
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <!-- Puedes agregar más <br> según necesites -->
     <h1 class="titulo">ANÁLISIS DE RIESGO Y DICTAMINACIÓN ELÉCTRICA</h1>
-    <h2>ING VICTOR MANUEL ALMENDRA ANTONIO</h2>
+    <h2>ING SERGIO CETZ</h2>
     <h3>ANÁLISIS Y DICTAMINADOR DE INSTALACIONES ELÉCTRICAS DEL MUNICIPIO DE BENITO JUAREZ, QUINTANA ROO</h3>
 
     <div style="line-height: 30%;">
         <h3 style="color: #a10000;">NÚMERO DE REGISTRO:</h3>
-        <p><u>MBJ-PM-SG-DGPC-JDN-AP-02-0050-2024</u></p>
+        <p><u><?= Html::encode($numeroRegistro) ?></u></p>
     </div>
 
     <!-- Aquí colocamos el mensaje en la portada -->
@@ -36,7 +39,16 @@ use yii\helpers\Url;
         $fechaCreacion = strtoupper($fechaCreacion); // Convertir la fecha a mayúsculas
         ?>
         
-        <p>BENITO JUAREZ, QUINTANA ROO A <?= $fechaCreacion ?></p>
+        <p>
+            <?php 
+            // Obtener el nombre de la sede o un valor predeterminado si no hay
+            $nombreSede = $dictamen->sede ? $dictamen->sede->nombre : 'N/A';
+            $nombreSede = strtoupper($nombreSede); // Convertir la fecha a mayúsculas
+
+            ?>
+            <?= Html::encode($nombreSede) ?> A <?= $fechaCreacion ?>
+        </p>
+
     </div>
 
 
@@ -85,13 +97,13 @@ use yii\helpers\Url;
         <img src="<?= Url::to('@web/img/Firma_Pdf.png', true) ?>" alt="Firma" style="width: 150px;"/>
 
         <p>
-        <strong>ING VICTOR MANUEL ALMENDRA ANTONIO</strong><br>
+        <strong>ING SERGIO CETZ</strong><br>
 
         <span style="font-size: 13px; line-height: 1.0;">
             Análisis de Riesgo y Dictaminación Eléctrica<br>
             del municipio de BENITO JUAREZ, QUINTANA ROO<br>
             NÚMERO DE REGISTRO:<br>
-            <u>MBJ-PM-SG-DGPC-JDN-AP-02-0050-2024</u><br>
+            <u><?= Html::encode($numeroRegistro) ?></u><br> <!-- Aquí también se muestra el número de registro -->
             ESTE DOCUMENTO TIENE VALIDEZ POR UN AÑO.</span>
     </div>
     <p style="font-size: 13px; line-height: 1.0; ">
