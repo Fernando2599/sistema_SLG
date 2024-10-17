@@ -104,7 +104,7 @@ $this->registerCssFile("@web/css/validacion.css");
                     'pdf_btn' => function ($url, $model) {
                         // Mostrar el botón PDF solo si el dictamen está "Validado"
                         if ($model->validez_id == 1) { // 1 es el ID para "Validado"
-                            return Html::a('<i class="fa fa-file-pdf-o" style="font-size:30px;color:red"></i>', ['pdfcontroller/pdf/generate-pdf', 'id' => $model->id], [
+                            return Html::a('<i class="fa fa-file-pdf-o" style="font-size:30px;color:red"></i>', ['pdf/pdf/generate-pdf', 'id' => $model->id], [
                                 'title' => 'Generar Dictamen',
                                 'data-pjax' => '0',
                                 'class' => 'btn btn-light' // Cambiado a rojo

@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers\pdfcontroller;
+namespace backend\controllers\pdf;
 
 use backend\models\Dictamen;
 use yii\web\Controller;
