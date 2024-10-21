@@ -57,7 +57,7 @@ FontAwesomeAsset::register($this);
             
     }else {
         NavBar::begin([
-            'brandLabel' => 'Sistema XXX',            //Yii::$app->name,
+            'brandLabel' => 'PSIEXTINTORES',            //Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
@@ -166,7 +166,7 @@ FontAwesomeAsset::register($this);
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
         <p class="float-start">&copy;
-                                      <!-- <?= Html::encode('Sistema XXX') ?> -->
+                                      <!-- <?= Html::encode('PSIEXTINTORES') ?> -->
                                       <?= date('Y')?>
                                       <spam></spam>I.S.C Eduardo Alexander Estrella Escobedo
         </p>

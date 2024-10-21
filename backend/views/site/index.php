@@ -8,7 +8,7 @@ use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 
-$this->title = 'Sistema XXX';
+$this->title = 'PSIEXTINTORES';
 $es_admin = PermisosHelpers::requerirMinimoRol('Admin');
 
 // Registrar el archivo CSS para la validación

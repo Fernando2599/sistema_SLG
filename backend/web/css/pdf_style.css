@@ -52,5 +52,31 @@ th {
 }
 
 
+.Qrcontainer {
+    margin-top: 50px;
+    width: 100%;
+}
+
+.Qrcontainer table {
+    width: 100%;
+    border-collapse: collapse; /* Colapsa los bordes de la tabla para que no haya espacio entre las celdas */
+}
+
+.Qrcontainer td {
+    vertical-align: top;
+    border: none; /* Elimina el borde de las celdas, haciéndolas transparentes */
+}
+
+.Qrcontainer .text {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.Qrcontainer .qr {
+    width: 150px;
+    text-align: right;
+    border: none; /* Elimina el borde de la celda del QR */
+}
 
 

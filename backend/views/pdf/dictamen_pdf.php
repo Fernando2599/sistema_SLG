@@ -93,25 +93,44 @@ $numeroRegistro = $dictamen->sede ? $dictamen->sede->numero_registro : 'N/A'; //
 
     <div class="info-firma">
 
-    <!-- Firma del Ingeniero-->
+        <!-- Firma del Ingeniero-->
         <img src="<?= Url::to('@web/img/Firma_Pdf.png', true) ?>" alt="Firma" style="width: 150px;"/>
 
-        <p>
-        <strong>ING SERGIO CETZ</strong><br>
+        <!-- Aquí está el nombre debajo de la firma -->
+        <p style="text-align: center; margin-top: -50px;">
+            <strong>ING EDUARDO ALEXANDER ESTRELLA ESCOBEDO</strong><br>
 
-        <span style="font-size: 13px; line-height: 1.0;">
-            Análisis de Riesgo y Dictaminación Eléctrica<br>
-            del municipio de BENITO JUAREZ, QUINTANA ROO<br>
-            NÚMERO DE REGISTRO:<br>
-            <u><?= Html::encode($numeroRegistro) ?></u><br> <!-- Aquí también se muestra el número de registro -->
-            ESTE DOCUMENTO TIENE VALIDEZ POR UN AÑO.</span>
+            <span style="font-size: 13px; line-height: 1.0;">
+                Análisis de Riesgo y Dictaminación Eléctrica<br>
+                del municipio de BENITO JUAREZ, QUINTANA ROO<br>
+                NÚMERO DE REGISTRO:<br>
+                <u><?= Html::encode($numeroRegistro) ?></u><br> <!-- Aquí también se muestra el número de registro -->
+                ESTE DOCUMENTO TIENE VALIDEZ POR UN AÑO.
+            </span>
+        </p>
     </div>
-    <p style="font-size: 13px; line-height: 1.0; ">
-        <br><br><br><br><br><br>
-        Evaluación conforme a la <strong>NORMA OFICIAL MEXICANA (NOM-002- STPS-2010) Y</strong><br>
-        <strong>NORMA OFICIAL MEXICANA (NOM-001-SEDE-2012)</strong>. El objeto de esta NOM es<br>
-        establecer las especificaciones y lineamientos de carácter técnico que deban satisfacer<br>
-        las instalaciones.
-    </p>
+
+
+    <div class="Qrcontainer">
+        <table>
+            <tr>
+                <!-- Columna del texto -->
+                <td class="text">
+                    Evaluación conforme a la <strong>NORMA OFICIAL MEXICANA (NOM-002- STPS-2010) Y</strong>
+                    <strong>NORMA OFICIAL MEXICANA (NOM-001-SEDE-2012)</strong>. El objeto de esta NOM es
+                    establecer las especificaciones y lineamientos de carácter técnico que deban satisfacer
+                    las instalaciones.
+                </td>
+
+                <!-- Columna del código QR -->
+                <td class="qr">
+                    <img src="<?= $qrPath ?>" alt="Código QR" style="width: 20%;" />
+                </td>
+                
+            </tr>
+        </table>
+    </div>
+
+
 </div>
 

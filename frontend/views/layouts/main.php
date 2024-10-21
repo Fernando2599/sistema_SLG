@@ -30,7 +30,7 @@ AppAsset::register($this);
 <header>
     <?php
     NavBar::begin([
-        'brandLabel' => 'Sistema XXX',   //Yii::$app->name,
+        'brandLabel' => 'PSIEXTINTORES',   //Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',

@@ -241,4 +241,22 @@ class DictamenController extends Controller
         return $this->redirect(['index']);
     }
 
+    /**
+     * Displays a single Dictamen model as an official document.
+     * @param int $id ID
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionOficial($id)
+    {
+        // Encuentra el modelo por su ID
+        $dictamen = $this->findModel($id);
+        
+        // Renderiza la vista dictamen_oficial
+        return $this->render('dictamen_oficial', [
+            'dictamen' => $dictamen,
+        ]);
+    }
+
+
 }

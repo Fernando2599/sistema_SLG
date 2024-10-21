@@ -10,6 +10,9 @@ use yii\filters\VerbFilter;
 use common\models\PermisosHelpers; //agregar esta linea siempre y cuando se use el comportamiento(behaviors) de la pagina.
 use yii\web\NotFoundHttpException; // Asegúrate de importar esta clase
 use yii\helpers\Url;
+use Endroid\QrCode\Builder\Builder; // Importar la librería de generación de QR
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\Writer\PngWriter;
 
 
 
@@ -67,10 +70,24 @@ class PdfController extends Controller
         // Escribir el CSS en el PDF
         $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
 
-        // Renderiza la vista parcial
+        // Generar el código QR
+        $qrCode = Builder::create()
+            ->writer(new PngWriter())
+            ->data(Url::to(['dictamen/oficial', 'id' => $id], true))  // URL al dictamen oficial
+            ->encoding(new Encoding('UTF-8'))
+            ->build();
+
+
+        // Guardar el QR temporalmente en una carpeta
+        $qrPath = \Yii::getAlias('@webroot/img/temp/qr_code.png');
+        $qrCode->saveToFile($qrPath);
+
+        // Renderizar la vista del PDF y pasar la ruta del QR
         $html = $this->renderPartial('/pdf/dictamen_pdf', [
             'dictamen' => $dictamen,
+            'qrPath' => $qrPath,  // Pasar la ruta del código QR a la vista
         ]);
+
 
         // Escribe el contenido HTML en el PDF
         $mpdf->WriteHTML($html);
