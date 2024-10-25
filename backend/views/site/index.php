@@ -12,7 +12,7 @@ $this->title = 'PSIEXTINTORES';
 $es_admin = PermisosHelpers::requerirMinimoRol('Admin');
 
 // Registrar el archivo CSS para la validación
-$this->registerCssFile("@web/css/index_site.css");
+//$this->registerCssFile("@web/css/index_site.css");
 
 ?>
 
@@ -39,3 +39,4 @@ $this->registerCssFile("@web/css/index_site.css");
         </center>
     </div>
 </div>
+<script src="theme/functionAjax/dashboardAjax.js"></script>
