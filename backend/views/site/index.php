@@ -13,6 +13,10 @@ $es_admin = PermisosHelpers::requerirMinimoRol('Admin');
 
 // Registrar el archivo CSS para la validación
 //$this->registerCssFile("@web/css/index_site.css");
+$this->registerJsFile(
+    '@web/theme/functionAjax/dashboardAjax.js',
+    ['depends' => [\yii\web\JqueryAsset::class]]
+);
 
 ?>
 
