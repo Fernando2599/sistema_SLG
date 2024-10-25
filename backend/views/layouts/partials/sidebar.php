@@ -71,17 +71,10 @@ function tieneAcceso($opcion, $userId = null) {
                         
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarAdministrar" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAdministrar">
-                            <i class="ri-tools-line"></i><span data-key="t-administrar">Administrar</span>
+                            <i class="ri-tools-line"></i><span data-key="t-administrar">Administracion</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarAdministrar">
                                 <ul class="nav nav-sm flex-column">
-                                    
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/ajuste']); ?>">
-                                            <i class="ri-settings-3-line"></i> <span data-key="t-ajuste">Ajuste</span>
-                                        </a>
-                                    </li>
-
                                     
                                     <li class="nav-item">
                                         <a class="nav-link menu-link" href="<?= Url::to(['/user']); ?>">
@@ -96,26 +89,14 @@ function tieneAcceso($opcion, $userId = null) {
                                     </li>
                                              
                                     <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/permiso']);?>">
-                                        <i class="ri-file-lock-line"></i> <span data-key="t-permiso">Permisos</span>
-                                        </a>
-                                    </li>
-                                          
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/usuario-rol']);?>">
-                                        <i class="ri-task-line"></i><span data-key="t-usuario-rol">Asignar Roles</span>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/usuario-permiso']); ?>">
-                                        <i class="ri-survey-line"></i><span data-key="t-usuario-permiso">Asignar Permisos</span>
+                                        <a class="nav-link menu-link" href="<?= Url::to(['/tipo-usuario']);?>">
+                                        <i class="ri-file-lock-line"></i> <span data-key="t-tipo-usuario">Tipos de Usuarios</span>
                                         </a>
                                     </li>
                                     
                                     <li class="nav-item">
                                         <a class="nav-link menu-link" href="<?= Url::to(['/estado']); ?>">
-                                        <i class="ri-toggle-line"></i> <span data-key="t-estado">Estado</span>
+                                        <i class="ri-toggle-line"></i> <span data-key="t-estado">Estado de Usuarios</span>
                                         </a>
                                     </li>
                                     
