@@ -103,34 +103,28 @@ function tieneAcceso($opcion, $userId = null) {
                                 </ul>
                             </div>
                         </li>
-                                      
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= Url::to(['/proyecto']); ?>">
-                                <i class="ri-file-list-3-line"></i> <span data-key="t-proyecto">Proyectos</span>
-                            </a>
-                        </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarInstitution" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarInstitution">
-                                <i class="las la-graduation-cap"></i> <span data-key="t-institution">Institucion</span>
+                            <a class="nav-link menu-link" href="#sidebarDictamen" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDictamen">
+                                <i class="ri-file-list-3-line"></i> <span data-key="t-dictamen">Dictamenes</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="sidebarInstitution">
+                            <div class="collapse menu-dropdown" id="sidebarDictamen">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/departamento']);?>"> 
-                                        <i class="ri-building-line"></i><span data-key="t-departamento">Departamentos</span>
+                                        <a class="nav-link menu-link" href="<?= Url::to(['/sede']);?>"> 
+                                        <i class="ri-building-line"></i><span data-key="t-sede">Sede</span>
                                         </a>
                                     </li>
     
                                     <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/asesor-interno']);?>"> 
-                                        <i class="ri-user-line"></i><span data-key="t-asesor-interno">Docente</span>
+                                        <a class="nav-link menu-link" href="<?= Url::to(['/dictamen']);?>"> 
+                                        <i class="ri-user-line"></i><span data-key="t-dictamen">Dictamen</span>
                                         </a>
                                     </li>
                                     
                                     <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/grado-academico']);?>"> 
-                                        <i class="ri-award-line"></i><span data-key="t-asesor-interno">Grados Academicos</span>
+                                        <a class="nav-link menu-link" href="<?= Url::to(['/validacion']);?>"> 
+                                        <i class="ri-award-line"></i><span data-key="t-validacion">Validacion</span>
                                         </a>
                                     </li>
                                     
@@ -140,74 +134,20 @@ function tieneAcceso($opcion, $userId = null) {
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarEmpresa" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarEmpresa">
-                                <i class="las la-briefcase"></i> <span data-key="t-Empresa">Empresa</span>
+                            <a class="nav-link menu-link" href="#sidebarTransacciones" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTransacciones">
+                                <i class="las la-briefcase"></i> <span data-key="t-Transacciones">Transacciones</span>
                             </a>
-                            <div class="collapse menu-dropdown" id="sidebarEmpresa">
+                            <div class="collapse menu-dropdown" id="sidebarTransacciones">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/empresa']); ?>">
-                                        <i class="ri-building-2-line"></i><span data-key="t-Empresas">Empresas</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/asesor-externo']); ?>">
-                                        <i class="ri-user-line"></i><span data-key="t-asesor-externo">Asesor Externo</span>
+                                        <a class="nav-link menu-link" href="<?= Url::to(['/asignatura']); ?>">
+                                        <i class="ri-building-2-line"></i><span data-key="t-asignatura">Venta</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </li> <!-- end Dashboard Menu -->
                         
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarIngenieria" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarIngenieria">
-                                <i class="ri-honour-line"></i> <span data-key="t-forms">Ingenieria</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarIngenieria">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/especialidad']); ?>">
-                                        <i class="ri-cpu-line"></i><span data-key="t-espacialidad">Especialidad</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="forms-select" class="nav-link" data-key="t-form-select">Plan de estudio</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/asignatura']); ?>">
-                                        <i class="ri-draft-line"></i><span data-key="t-asignatura">Asignatura</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarAlumnos" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAlumnos">
-                                <i class="las la-user-graduate"></i> <span data-key="t-tables">Alumnos</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarAlumnos">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/preregistro']); ?>">
-                                        <i class="ri-user-follow-line"></i><span data-key="t-preregistro">Pre-registros</span>
-                                        </a>
-                                    </li>
-                                   
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/documento']); ?>">
-                                        <i class="ri-file-text-line"></i><span data-key="t-documento">Documentos</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link menu-link" href="<?= Url::to(['/expediente']); ?>">
-                                        <i class="ri-folder-user-line"></i><span data-key="t-expediente">Expedientes</span>
-                                        </a>
-                                    </li>
-                                    
-                                </ul>
-                            </div>
-                        </li>
                         
 
                     </ul>
